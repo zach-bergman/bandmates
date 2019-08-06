@@ -2,11 +2,10 @@ const functions = require('firebase-functions');
 
 const app = require('express')();
 
-const { getAllScreams } = require('./handlers/screams');
-const { signup, login } = require('./handlers/users');
+const FBAuth = require('./util/FBAuth');
 
-const firebase = require('firebase');
-firebase.initializeApp(firebaseConfig);
+const { getAllScreams, postOneScream } = require('./handlers/screams');
+const { signup, login } = require('./handlers/users');
 
 // scream routes
 app.get('/screams', getAllScreams);

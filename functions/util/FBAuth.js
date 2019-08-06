@@ -1,4 +1,4 @@
-const { admin } = require('./admin');
+const { admin, db } = require('./admin');
 
 module.exports = (req, res, next) => {
     let idToken;
@@ -9,7 +9,9 @@ module.exports = (req, res, next) => {
         return res.status(403).json({ error: 'Unauthorized'});
     }
 
-    admin.auth().verifyIdToken(idToken)
+    admin
+        .auth()
+        .verifyIdToken(idToken)
         .then(decodedToken => {
             req.user = decodedToken;
             console.log(decodedToken);
